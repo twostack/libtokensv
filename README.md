@@ -41,14 +41,27 @@ the old one and making the new one in one transaction; withdrawing one is
 spending it alone.
 
 A token is spent with a signature by its locking key, which the wallet must
-hold: one of its HD keys, or a BRC-42 (type-42) key it has recorded with
-`RecordType42AddressesCommand`. For a BRC-100 token locked with counterparty
-`anyone` and `forSelf`, that derivation is the wallet's anchor key as the
-anchor, the public key of private key 1 (the generator point) as the sender,
-and the BRC-43 invoice number (`1-messagebox advertisement-1`, say). The
-plugin's `extractMetadata` names the address of the locking key as the
-token's owner, so the wallet tracks a token locked to a key it holds as its
-own, without counting it in the balance or spending it as change.
+hold: one of its HD keys, or a BRC-42 (type-42) key it has recorded with the
+coordinator's `RecordType42AddressesCommand` (libspiffy 5.5.0). The plugin's
+`extractMetadata` names the address of the locking key as the token's owner,
+so the wallet tracks a token locked to a key it holds as its own, without
+counting it in the balance or spending it as change.
+
+### Signed fields, and the key a token is locked to
+
+BRC-100 tokens usually carry a signature over their fields, made with a
+BRC-42 child of the identity key (`createSignature`), and the reference
+client locks the token to that same child. A libspiffy wallet refuses to
+sign data with a key it holds coins under (such a signature can be a spend
+signature), so once the locking key is recorded it can no longer sign the
+fields of the next token. Lock the token to a different child instead: the
+overlays check the field signature, not the lock. For a message box
+advertisement: fields signed with protocol `[1, 'messagebox advertisement']`,
+key `1`, counterparty `anyone`, as `tm_messagebox` verifies; the token locked
+to the same protocol and key with counterparty `self`, recorded as the
+derivation with the wallet's anchor key as both anchor and sender and the
+invoice number `1-messagebox advertisement-1`. Both derive from the identity,
+so a restored wallet finds its tokens again.
 
 ## Overlay services
 
