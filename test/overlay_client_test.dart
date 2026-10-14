@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:libtoken/libtoken.dart';
+import 'package:libtokensv/libtokensv.dart';
 import 'package:test/test.dart';
 
 /// Answers recorded from https://overlay-us-1.bsvb.tech on 2026-10-14.

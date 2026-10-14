@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:convert/convert.dart';
 import 'package:dartsv/dartsv.dart';
 import 'package:libspiffy/libspiffy.dart' show Brc100Counterparty, Brc100Keys, Brc43Protocol;
-import 'package:libtoken/libtoken.dart';
+import 'package:libtokensv/libtokensv.dart';
 import 'package:test/test.dart';
 
 /// Vectors written by @bsv/sdk 2.2.0's PushDrop template and ProtoWallet

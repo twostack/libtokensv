@@ -1,7 +1,7 @@
 import 'package:convert/convert.dart';
 import 'package:dartsv/dartsv.dart';
 import 'package:libspiffy/libspiffy.dart';
-import 'package:libtoken/libtoken.dart';
+import 'package:libtokensv/libtokensv.dart';
 import 'package:test/test.dart';
 
 final _sighash = SighashType.SIGHASH_ALL.value | SighashType.SIGHASH_FORKID.value;

@@ -1,4 +1,4 @@
-# libtoken
+# libtokensv
 
 Token scripts for [libspiffy](https://pub.dev/packages/libspiffy) wallets, as
 libspiffy plugins, and a client for BSV overlay services. libspiffy itself is
