@@ -1,0 +1,26 @@
+name: libtoken
+description: >-
+  BSV token scripts for libspiffy wallets, as plugins: PushDrop to start, the
+  token format BRC-100 overlays use. Also a client for BSV overlay services
+  (SLAP and SHIP lookup, submit).
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  convert: ^3.1.1
+  dartsv: ^3.1.1
+  http: ^1.2.0
+  libspiffy: ^5.4.0
+
+dev_dependencies:
+  lints: ^5.0.0
+  test: ^1.24.0
+
+dependency_overrides:
+  # isar_community 3.4 asserts on the 3.3.2 schemas libspiffy's dependencies
+  # were generated with. Only for this package's own tests: overrides do not
+  # reach the apps that use it.
+  isar_community: 3.3.2
