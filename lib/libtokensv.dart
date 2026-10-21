@@ -20,6 +20,9 @@ export 'src/lt/lt_identity.dart' show LtIdentity;
 export 'src/lt/lt_succession.dart' show LtSuccession;
 export 'src/lt/lt_wallet.dart' show LtLink, LtLinks, LtHolding, LtRefused, LtReceive;
 export 'src/lt/lt_payload.dart' show LtPayload;
+// The swap: a token sold for sats or another token in two halves, the
+// seller's first (doc/lt/LT_NFT_WALLET_INTEGRATION.md).
+export 'src/lt/lt_swap.dart' show LtSwap, LtSwapTerms, LtSwapHalf, FnftSwap;
 
 // The Fuelled NFT, TSL1_LT_FNFT: the token output carries the satoshis that
 // pay its own fees (doc/lt/LT_FNFT_WALLET_INTEGRATION.md). The Voucher NFT
@@ -28,6 +31,9 @@ export 'src/lt/lt_payload.dart' show LtPayload;
 export 'src/lt/lt_fnft_script_gen.dart' show FnftLayout, FnftScriptGen, FuelLayout;
 export 'src/lt/lt_fnft_builder.dart' show FnftBuilder, FnftTx, VoucherTerms, NoteTerms, FuelTerms;
 export 'src/lt/lt_fnft_wallet.dart' show FnftHolding, FnftIdentity, FnftReceive, FnftSuccession;
+// What a Voucher or a Note pays at each ending, for a wallet to show before
+// it accepts one.
+export 'src/lt/lt_instrument_math.dart' show NoteMath, NoteEnding, VoucherMath;
 
 // The issuer's identity: a Rabin key anchored to an Ed25519 identity by an
 // anchor transaction (MAP + AIP), which LtIdentity verifies.

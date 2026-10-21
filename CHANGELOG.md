@@ -10,6 +10,13 @@
   `lt_fnft_test.dart`) and the regtest suites (`LT_LOCALNET=1`) come with
   them; the specifications are in `doc/lt/`. No libspiffy plugins yet: those
   are in `lt-spiffy-plugin`.
+- The rest of the family's tests, helpers and documents: the Listed NFT
+  (`TSL1_LT_LNFT`), the Voucher and Note kinds and the sale versions
+  (`TSL1_LT_FNFT_S`, `VNFT_S`, `NOTE_S`) with their suites; the swap
+  (`LtSwap`, `FnftSwap`) and the instrument math (`NoteMath`, `VoucherMath`);
+  the payload suite; the NFT, Listed NFT, Voucher and Note integration
+  documents. 199 interpreter tests, 10 regtest tests skipped without
+  `LT_LOCALNET=1`.
 
 ## 0.1.0
 

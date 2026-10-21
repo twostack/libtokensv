@@ -112,6 +112,13 @@ final held = await FnftReceive.check(b: b, raw: t1.raw, ownerPkh: newcomerPkh, a
 final r = b.redeem(from: t1, ownerKey: newcomerKey.lt, fee: 300);   // one output, to redeemTo
 ```
 
+Also here: the Listed NFT (`LtLayout.lnft`, a price in the header that anyone
+may pay the owner), the sale versions of the fuelled family (`FuelLayout.fnftSale`,
+`vnftSale`, `noteSale`: a pay output, so a token is sold inside its own
+transfer), the swap (`LtSwap`, `FnftSwap`: two halves, the seller's first) and
+`NoteMath` / `VoucherMath` for what an ending pays. Each archetype's wallet
+procedures are in `doc/lt/LT_*_WALLET_INTEGRATION.md`.
+
 Every hop and ending is verified through dartsv's interpreter in the tests;
 `LT_LOCALNET=1 dart test test/lt_nft_localnet_test.dart` mines a lifecycle on
 a regtest node.
