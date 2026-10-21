@@ -76,3 +76,42 @@ final outputs = await overlay.lookup('ls_messagebox', {'identityKey': key});
 final result = await overlay.submit(beef, ['tm_messagebox']);
 if (!result.acknowledgedIn('tm_messagebox')) { /* not admitted */ }
 ```
+
+## Lineage tokens (TSL1_LT_FT, TSL1_LT_NFT, TSL1_LT_FNFT)
+
+Copied from [tstokenlib](../tstokenlib) as the script and builder layer, with
+their interpreter tests; the libspiffy plugins that move them in a wallet are
+still in `lt-spiffy-plugin`. A lineage token's script rebuilds its own
+transaction and its parent's from records carried in the unlock, so one hop
+at the tip proves the whole lineage back to an issuance the issuer's Rabin key
+attested, on chain, with no witness transaction and no reader.
+`doc/lt/LT.md` is the family specification.
+
+- **`TSL1_LT_NFT`**: one indivisible unit. `LtBuilder.issue`, `transfer`,
+  `end`; `LtReceive.check` is the payee's verification; `LtIdentity` ties the
+  issuer's Rabin key to an Ed25519 identity through an anchor transaction.
+  Code 2,231 B, 386 B of record per hop.
+- **`TSL1_LT_FT`**: amounts, a split into two and a merge of two, with a
+  2-of-3 attester reset. Code 5,343 B, 455 B per ancestor.
+- **`TSL1_LT_FNFT`**: the Fuelled NFT. The token output carries the satoshis
+  that pay its fees, so a transfer needs no funding input and a holder needs
+  no coins; anyone may top it up; the owner may burn it to take the fuel back.
+  152 B per hop (`doc/lt/LT_FNFT_WALLET_INTEGRATION.md`). The same script
+  family with terms in the header gives the Voucher NFT (`FnftBuilder.voucher`:
+  a hop limit, redemption only to the issuer, a forced redemption after an
+  expiry) and the Note NFT (`FuelLayout.note`: the fuel split by declared
+  terms at each ending).
+
+```dart
+final b = FnftBuilder.voucher();
+final terms = VoucherTerms(maxHops: 3, expiry: 900000, redeemTo: hostPkh, feeCap: 2000);
+final t0 = b.issue(first: coin, issuerPkh: issuer.pkh, owner: claimKeyPkh, terms: terms, fee: 300);
+t0.x = issuer.attest(t0.txid);                      // the issuer's Rabin attestation, carried by the next hop
+final t1 = b.transfer(from: t0, ownerKey: claimKey.lt, to: newcomerPkh, fee: 700);   // no funding input
+final held = await FnftReceive.check(b: b, raw: t1.raw, ownerPkh: newcomerPkh, anchorTx: anchor);
+final r = b.redeem(from: t1, ownerKey: newcomerKey.lt, fee: 300);   // one output, to redeemTo
+```
+
+Every hop and ending is verified through dartsv's interpreter in the tests;
+`LT_LOCALNET=1 dart test test/lt_nft_localnet_test.dart` mines a lifecycle on
+a regtest node.

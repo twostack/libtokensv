@@ -1,15 +1,19 @@
 name: libtokensv
 description: >-
-  BSV token scripts for libspiffy wallets, as plugins: PushDrop to start, the
-  token format BRC-100 overlays use. Also a client for BSV overlay services
-  (SLAP and SHIP lookup, submit).
-version: 0.1.0
+  BSV token scripts for libspiffy wallets: PushDrop, the token format BRC-100
+  overlays use, and the TSL1 lineage tokens (TSL1_LT_FT, TSL1_LT_NFT and the
+  fuelled family TSL1_LT_FNFT). Also a client for BSV overlay services (SLAP
+  and SHIP lookup, submit).
+version: 0.2.0
 
 environment:
   sdk: ^3.8.1
 
 dependencies:
+  collection: ^1.18.0
   convert: ^3.1.1
+  crypto: ^3.0.6
+  cryptography: ^2.5.0
   dartsv: ^3.1.1
   http: ^1.2.0
   libspiffy: ^5.4.0
