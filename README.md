@@ -80,8 +80,8 @@ if (!result.acknowledgedIn('tm_messagebox')) { /* not admitted */ }
 ## Lineage tokens (TSL1_LT_FT, TSL1_LT_NFT, TSL1_LT_FNFT)
 
 Copied from [tstokenlib](../tstokenlib) as the script and builder layer, with
-their interpreter tests; the libspiffy plugins that move them in a wallet are
-still in `lt-spiffy-plugin`. A lineage token's script rebuilds its own
+their interpreter tests, and the libspiffy plugins that move them in a wallet
+(from `lt-spiffy-plugin`). A lineage token's script rebuilds its own
 transaction and its parent's from records carried in the unlock, so one hop
 at the tip proves the whole lineage back to an issuance the issuer's Rabin key
 attested, on chain, with no witness transaction and no reader.
@@ -122,3 +122,24 @@ procedures are in `doc/lt/LT_*_WALLET_INTEGRATION.md`.
 Every hop and ending is verified through dartsv's interpreter in the tests;
 `LT_LOCALNET=1 dart test test/lt_nft_localnet_test.dart` mines a lifecycle on
 a regtest node.
+
+### In a wallet
+
+One plugin per kind, registered in the wallet's isolate before libspiffy
+loads a wallet:
+
+```dart
+PluginRegistry().register(LtNftPlugin(network: NetworkType.MAIN));
+PluginRegistry().register(LtFnftPlugin(network: NetworkType.MAIN));
+PluginRegistry().register(LtVnftPlugin(network: NetworkType.MAIN));
+PluginRegistry().register(LtNotePlugin(network: NetworkType.MAIN));
+PluginRegistry().register(LtLnftPlugin(network: NetworkType.MAIN));
+PluginRegistry().register(LtFnftSalePlugin(network: NetworkType.MAIN));  // and LtVnftSalePlugin, LtNoteSalePlugin
+```
+
+Each plugin's actions, params and host rules are in `doc/spiffy/`
+(`VNFT.md` for the Voucher, `SECURITY.md` for what every host must do). The
+payee's checks before taking a token are `LtNftReceive.check`,
+`LtFnftReceive.check`, `LtVnftReceive.check` and `LtNoteReceive.check`.
+`test/spiffy/libspiffy_*_wallet_test.dart` runs each lifecycle in a real
+libspiffy wallet with ARC stubbed.

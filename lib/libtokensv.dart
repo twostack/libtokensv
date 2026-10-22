@@ -40,3 +40,14 @@ export 'src/lt/lt_instrument_math.dart' show NoteMath, NoteEnding, VoucherMath;
 export 'src/crypto/rabin.dart';
 export 'src/builder/identity_anchor_builder.dart';
 export 'src/transaction/identity_verification.dart';
+
+// The lineage tokens as libspiffy plugins: libspiffy identifies, funds,
+// signs and records their transactions; the builders above make and check
+// them. Each kind has a plugin and a sale version, and a receive check for
+// a token someone hands over.
+export 'src/spiffy/lt_nft_plugin.dart' show LtNftPlugin, LtLnftPlugin;
+export 'src/spiffy/lt_fnft_plugin.dart' show LtFnftPlugin, LtFnftSalePlugin;
+export 'src/spiffy/lt_vnft_plugin.dart' show LtVnftPlugin, LtVnftSalePlugin;
+export 'src/spiffy/lt_note_plugin.dart' show LtNotePlugin, LtNoteSalePlugin;
+export 'src/spiffy/lt_nft_receive.dart' show LtNftReceive, LtFnftReceive, LtVnftReceive, LtNoteReceive;
+export 'src/spiffy/wallet_key.dart' show WalletKey;

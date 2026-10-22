@@ -100,7 +100,7 @@ b.reissue(ended: redemptionOrForced, endKey: issuerKey, issuerPkh, terms: newTer
 
 ## 7. libspiffy
 
-`LtVnftPlugin` in `../lt-spiffy-plugin` (`docs/VNFT.md` there) gives these operations to a libspiffy wallet. Its force-redemption takes the holder's transaction as `tokenRaw`, because the issuer's wallet does not follow the voucher.
+`LtVnftPlugin` here (`doc/spiffy/VNFT.md`) gives these operations to a libspiffy wallet. Its force-redemption takes the holder's transaction as `tokenRaw`, because the issuer's wallet does not follow the voucher.
 
 ## 8. Open
 

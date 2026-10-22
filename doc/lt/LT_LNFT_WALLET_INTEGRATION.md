@@ -82,7 +82,7 @@ On localnet, all mined (`test/lt_lnft_localnet_test.dart`): list 6,829 B; purcha
 
 ## 6. libspiffy
 
-`LtLnftPlugin` in `../lt-spiffy-plugin` has the covenant NFT's actions, and `list`, `withdraw` and `buy` (with `maxPrice`). Refer to that package's `docs/LNFT.md`.
+`LtLnftPlugin` here has the covenant NFT's actions, and `list`, `withdraw` and `buy` (with `maxPrice`). Refer to `doc/spiffy/LNFT.md`.
 
 ## 7. Open
 

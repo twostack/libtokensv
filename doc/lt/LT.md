@@ -2,7 +2,7 @@
 
 # The lineage tokens (TSL1_LT_NFT, TSL1_LT_FT) and their modes
 
-This specification covers the family; each mode's procedures for a wallet are in its own integration document (`../LT_NFT_WALLET_INTEGRATION.md`, `../LT_LNFT_WALLET_INTEGRATION.md`, `../LT_FNFT_WALLET_INTEGRATION.md`, `../LT_VNFT_WALLET_INTEGRATION.md`, `../LT_NOTE_WALLET_INTEGRATION.md`), and the plugin's guarantees, host rules, threats and known gaps in `../../../lt-spiffy-plugin/docs/SECURITY.md`. The script is `lib/src/lt/lt_script_gen.dart` and the fuelled family's `lt_fnft_script_gen.dart`; where this document and the generator differ, the generator is the authority, and `scrypt/contracts/tsl1_lt_nft.scrypt` is an annotated reading aid for the NFT.
+This specification covers the family; each mode's procedures for a wallet are in its own integration document (`../LT_NFT_WALLET_INTEGRATION.md`, `../LT_LNFT_WALLET_INTEGRATION.md`, `../LT_FNFT_WALLET_INTEGRATION.md`, `../LT_VNFT_WALLET_INTEGRATION.md`, `../LT_NOTE_WALLET_INTEGRATION.md`), and the plugin's guarantees, host rules, threats and known gaps in `../spiffy/SECURITY.md`. The script is `lib/src/lt/lt_script_gen.dart` and the fuelled family's `lt_fnft_script_gen.dart`; where this document and the generator differ, the generator is the authority, and `scrypt/contracts/tsl1_lt_nft.scrypt` is an annotated reading aid for the NFT.
 
 ## 1. What it is for, and its status
 
@@ -81,7 +81,7 @@ The attesters (resettable tokens); the Listed NFT's price; the fuelled family's 
 
 ## 8. The API and the plugins
 
-`LtBuilder` (`issue`, `transfer`, `fromRaw`, the records), `LtKey` (`LtPrivateKey`, or a wallet's own signer), `LtIssuer` and the identity anchor (`IdentityAnchorBuilder`), `LtLinks`, `LtSuccession.verify`, `LtPayload`, the fuelled family's `FnftBuilder`, `NoteMath`, `VoucherMath`. The plugins and the payee's checks (`LtNftReceive.check`, `LtFnftReceive.check`, `LtVnftReceive.check`, `LtNoteReceive.check`); the host rules in `../../../lt-spiffy-plugin/docs/SECURITY.md`, `LNFT.md`, `FNFT.md`, `VNFT.md`, `NOTE.md`, `SWAP.md`.
+`LtBuilder` (`issue`, `transfer`, `fromRaw`, the records), `LtKey` (`LtPrivateKey`, or a wallet's own signer), `LtIssuer` and the identity anchor (`IdentityAnchorBuilder`), `LtLinks`, `LtSuccession.verify`, `LtPayload`, the fuelled family's `FnftBuilder`, `NoteMath`, `VoucherMath`. The plugins and the payee's checks (`LtNftReceive.check`, `LtFnftReceive.check`, `LtVnftReceive.check`, `LtNoteReceive.check`); the host rules in `../spiffy/SECURITY.md`, `LNFT.md`, `FNFT.md`, `VNFT.md`, `NOTE.md`, `SWAP.md`.
 
 ## 9. The decisions
 

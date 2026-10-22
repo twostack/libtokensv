@@ -113,7 +113,7 @@ As for the covenant NFT, with three differences:
 
 ## 9. libspiffy
 
-`LtFnftPlugin` in `../lt-spiffy-plugin` (commit 62f9b69) moves this archetype in a libspiffy wallet. Transfers, ends and reissues take no wallet coin; libspiffy (`dc584a4`) selects and reserves none for them. Refer to that package's `docs/FNFT.md`.
+`LtFnftPlugin` here moves this archetype in a libspiffy wallet. Transfers, ends and reissues take no wallet coin; libspiffy (`dc584a4`) selects and reserves none for them. Refer to `doc/spiffy/FNFT.md`.
 
 ## 10. Open
 
@@ -152,7 +152,7 @@ A token is issued as a sale version or not; it cannot change later. An issuer wh
 
 **Growth.** A plain transfer adds 152 B, as before. A sale adds 323 B: the buyer's coin (143 B) and the pay field (28 B) stay in the record.
 
-**libspiffy:** `LtFnftSalePlugin`, `LtVnftSalePlugin` and `LtNoteSalePlugin` in `../lt-spiffy-plugin` have their base plugin's actions and the swap's (that package's `docs/SWAP.md`, section 1.8).
+**libspiffy:** `LtFnftSalePlugin`, `LtVnftSalePlugin` and `LtNoteSalePlugin` here have their base plugin's actions and the swap's (`doc/spiffy/SWAP.md`, section 1.8).
 
 **Measured on localnet** (`test/lt_fnft_sale_localnet_test.dart`, all mined): FNFT_S sale 7,080 B, next hop 7,221 B; VNFT_S sale 7,658 B, next hop 7,800 B, redemption 3,404 B; NOTE_S sale 9,224 B, next hop 9,365 B, exit 4,202 B.
 

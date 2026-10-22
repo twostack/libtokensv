@@ -1,0 +1,3 @@
+# One suite at a time: the plugin tests' wallets each load Isar's library,
+# which suites running together download over one another.
+concurrency: 1
